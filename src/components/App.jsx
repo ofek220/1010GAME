@@ -1,11 +1,14 @@
 import React from "react";
 import Board from "./board";
+import Score from "./Score";
+import PlayerArea from "./PlayerArea";
 
 function App() {
   return (
     <div>
-      <h1>1010 Game</h1>
+      <Score />
       <Board />
+      <PlayerArea />
     </div>
   );
 }
