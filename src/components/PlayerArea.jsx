@@ -1,12 +1,22 @@
 import React from "react";
-// import Pieces from "./pieces";
+import { pieces } from "./pieces";
 
 function PlayerArea() {
+  // pick 3 random pieces from pieces.jsx to display in player area
+  const randomPiece = Array.from({ length: 3 }, () => {
+    const randomIndex = Math.floor(Math.random() * pieces.length);
+    return pieces[randomIndex];
+  });
+
+  console.log(randomPiece);
+
   return (
     <div id="player-area">
-      <div class="piece-area"></div>
-      <div class="piece-area"></div>
-      <div class="piece-area"></div>
+      {randomPiece.map((piece, i) => (
+        <div key={i} className="piece-area">
+          {piece.id}
+        </div>
+      ))}
     </div>
   );
 }

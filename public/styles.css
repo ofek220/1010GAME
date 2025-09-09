@@ -49,3 +49,7 @@ body {
   grid-template-rows: repeat(4, 1fr);
   width: calc(50px * 3);
 }
+
+#square1x1 {
+  background-color: yellow !important;
+}
