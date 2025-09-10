@@ -1,15 +1,19 @@
 import React from "react";
-import Board from "./board";
+import Board from "./Board";
 import Score from "./Score";
 import PlayerArea from "./PlayerArea";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function App() {
   return (
-    <div>
-      <Score />
-      <Board />
-      <PlayerArea />
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div>
+        <Score />
+        <Board />
+        <PlayerArea />
+      </div>
+    </DndProvider>
   );
 }
 
