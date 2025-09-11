@@ -65,6 +65,11 @@ body {
   background-color: purple !important;
 }
 
+.square5x1,
+.square1x5 {
+  background-color: rgb(28, 241, 56) !important;
+}
+
 .square2x2 {
   background-color: red !important;
 }
@@ -77,11 +82,30 @@ body {
 
 .small-L-shape,
 .small-L-upside-down,
-.small-L-shape-rotated,
+.small-L-shape-mirrored,
 .small-L-upside-down-mirrored {
   background-color: rgb(202, 61, 84) !important;
 }
 
 .square3x3 {
   background-color: rgb(255, 0, 119) !important;
+}
+
+@media (max-width: 576px) {
+  #board {
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0;
+    aspect-ratio: 1 / 1;
+  }
+
+  .board-square {
+    width: 35px;
+    height: 35px;
+  }
+
+  .piece-area {
+    grid-template-rows: repeat(var(--rows), 40px);
+    grid-template-columns: repeat(var(--cols), 40px);
+  }
 }
