@@ -2,11 +2,35 @@ import React from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "./Constants";
 
-function DropPiece({ row, col, onDrop, occupied }) {
+function DropPiece({
+  row,
+  col,
+  onDrop,
+  occupied,
+  onHover,
+  squareIsHovered,
+  squareValidHover,
+}) {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.PIECE,
-    drop: (item, monitor) => {
-      console.log("Dropped:", item);
+    hover: (item, monitor) => {
+      const hoveredSquares = item.piece.shape.map(([r, c]) => {
+        const targetRow = row + r;
+        const targetCol = col + c;
+        const isValid =
+          targetRow >= 0 &&
+          targetRow < 10 &&
+          targetCol >= 0 &&
+          targetCol < 10 &&
+          !occupied[targetRow][targetCol];
+
+        return { row: targetRow, col: targetCol, valid: isValid };
+      });
+      onHover(hoveredSquares);
+    },
+
+    drop: (droppedItem, monitor) => {
+      onDrop(droppedItem, row, col);
     },
     canDrop: (item) => {
       for (let [r, c] of item.piece.shape) {
@@ -34,13 +58,20 @@ function DropPiece({ row, col, onDrop, occupied }) {
     }),
   }));
 
-  const BgHoverColor = isOver ? (canDrop ? "lightgreen" : "red") : "#f8b259";
+  let bgColor = "#f8b259";
+  if (squareIsHovered) {
+    bgColor = squareValidHover ? "lightgreen" : "red";
+  } else if (isOver && canDrop) {
+    bgColor = "lightgreen";
+  } else if (isOver && !canDrop) {
+    bgColor = "red";
+  }
 
   return (
     <div
       ref={drop}
       className="board-square"
-      style={{ backgroundColor: BgHoverColor }}
+      style={{ backgroundColor: bgColor }}
     ></div>
   );
 }
