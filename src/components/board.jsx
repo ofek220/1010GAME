@@ -21,7 +21,7 @@ function Board() {
       const targetRow = row + offSetRow;
       const targetCol = col + offSetCol;
       console.log("Placing piece at:", targetRow, targetCol);
-      newBoard[targetRow][targetCol] = { ...item.piece };
+      newBoard[targetRow][targetCol] = { className: item.piece.className };
     });
     setBoard(newBoard);
   }
