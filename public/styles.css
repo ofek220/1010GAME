@@ -1,5 +1,6 @@
 :root {
   --square-size: 5vmin;
+  --bgColor: #ae59f8;
 }
 
 body {
@@ -27,7 +28,7 @@ body {
 }
 
 .board-square {
-  background-color: #f8b259;
+  background-color: var(--bgColor);
   border: 1px solid black;
   box-sizing: border-box;
   width: var(--square-size);

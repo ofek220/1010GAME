@@ -2,17 +2,28 @@ import React, { useState } from "react";
 import DropPiece from "./DropPieces";
 
 function Board() {
-  const board = Array(10)
-    .fill(0)
-    .map(() => Array(10).fill(0));
+  const [board, setBoard] = useState(
+    Array(10)
+      .fill(0)
+      .map(() => Array(10).fill(null))
+  );
 
   const [hoveredSquares, setHoveredSquares] = useState([]);
   function handleHoverSquares(hoveredSquares) {
     setHoveredSquares(hoveredSquares);
   }
 
-  function handleDropPiece() {
+  function handleDropPiece(item, row, col) {
     setHoveredSquares([]);
+    const newBoard = board.map((r) => r.slice());
+
+    item.piece.shape.forEach(([offSetRow, offSetCol]) => {
+      const targetRow = row + offSetRow;
+      const targetCol = col + offSetCol;
+      console.log("Placing piece at:", targetRow, targetCol);
+      newBoard[targetRow][targetCol] = { ...item.piece };
+    });
+    setBoard(newBoard);
   }
 
   return (

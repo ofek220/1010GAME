@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "./Constants";
 
@@ -29,8 +29,9 @@ function DropPiece({
       onHover(hoveredSquares);
     },
 
-    drop: (droppedItem, monitor) => {
-      onDrop(droppedItem, row, col);
+    drop: (item, monitor) => {
+      onDrop(item, row, col);
+      setPieceClass(item.piece.className);
     },
     canDrop: (item) => {
       for (let [r, c] of item.piece.shape) {
@@ -58,19 +59,18 @@ function DropPiece({
     }),
   }));
 
-  let bgColor = "#f8b259";
+  const piece = occupied[row][col];
+  let bgColor = "var(--bgColor)"; // main board color
   if (squareIsHovered) {
     bgColor = squareValidHover ? "lightgreen" : "red";
-  } else if (isOver && canDrop) {
-    bgColor = "lightgreen";
-  } else if (isOver && !canDrop) {
-    bgColor = "red";
   }
+
+  const [pieceClass, setPieceClass] = useState("");
 
   return (
     <div
       ref={drop}
-      className="board-square"
+      className={`board-square ${piece ? piece.className : ""}`}
       style={{ backgroundColor: bgColor }}
     ></div>
   );
