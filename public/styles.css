@@ -45,6 +45,11 @@ body {
 
 .piece-area {
   margin: auto;
+  cursor: grab;
+}
+
+.piece-area:active {
+  cursor: grabbing;
 }
 
 .square1x1 {

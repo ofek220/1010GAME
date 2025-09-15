@@ -9,7 +9,7 @@ function getGridSize(shape) {
   return { rows, cols };
 }
 
-function DragPiece({ piece }) {
+function DragPiece({ piece, onPlaced }) {
   const { rows, cols } = getGridSize(piece.shape);
 
   // Create a grid and mark filled cells
@@ -23,9 +23,18 @@ function DragPiece({ piece }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.PIECE,
     item: { piece },
+    options: {
+      effectAllowed: "move",
+    },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
+    end(item, monitor) {
+      const didDrop = monitor.didDrop();
+      if (didDrop) {
+        onPlaced(item.piece.id);
+      }
+    },
   }));
 
   return (
@@ -37,6 +46,7 @@ function DragPiece({ piece }) {
         gridTemplateRows: `repeat(${rows}, 1fr)`,
         gridTemplateColumns: `repeat(${cols}, 1fr)`,
         gap: "0",
+        opacity: isDragging ? 0 : 1,
       }}
     >
       {grid.flat().map((cell, idx) => (

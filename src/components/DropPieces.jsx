@@ -14,6 +14,7 @@ function DropPiece({
   const [{ canDrop, isOver }, drop] = useDrop(
     () => ({
       accept: ItemTypes.PIECE,
+
       hover: (item, monitor) => {
         const hoveredSquares = item.piece.shape.map(([r, c]) => {
           const targetRow = row + r;
@@ -32,7 +33,9 @@ function DropPiece({
 
       drop: (item, monitor) => {
         onDrop(item, row, col);
+        return { dropEffect: "move" };
       },
+
       canDrop: (item) => {
         for (let [r, c] of item.piece.shape) {
           let targetRow = row + r;
