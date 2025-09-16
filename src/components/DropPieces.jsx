@@ -6,7 +6,7 @@ function DropPiece({
   row,
   col,
   onDrop,
-  occupied,
+  board,
   onHover,
   squareIsHovered,
   squareValidHover,
@@ -24,7 +24,7 @@ function DropPiece({
             targetRow < 10 &&
             targetCol >= 0 &&
             targetCol < 10 &&
-            !occupied[targetRow][targetCol];
+            !board[targetRow][targetCol];
 
           return { row: targetRow, col: targetCol, valid: isValid };
         });
@@ -49,7 +49,7 @@ function DropPiece({
             return false;
           }
 
-          if (occupied[targetRow][targetCol]) {
+          if (board[targetRow][targetCol]) {
             return false;
           }
         }
@@ -61,10 +61,10 @@ function DropPiece({
         getItem: monitor.getItem(),
       }),
     }),
-    [occupied, row, col]
+    [board, row, col]
   );
 
-  const piece = occupied[row][col];
+  const piece = board[row]?.[col];
   let bgColor = "var(--bgColor)"; // main board color
   if (squareIsHovered) {
     bgColor = squareValidHover ? "lightgreen" : "red";
