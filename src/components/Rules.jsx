@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function Rules({ board, newRow }) {
+function Rules({ board, newRow, newCol }) {
   useEffect(() => {
     if (!board) return;
     board.forEach((row, rowIndex) => {
@@ -10,7 +10,23 @@ function Rules({ board, newRow }) {
         newRow(rowIndex);
       }
     });
-  }, [board, newRow]);
-  return null;
+  }, [newRow]);
+
+  useEffect(() => {
+    for (let col = 0; col < 10; col++) {
+      let fullColumn = true;
+
+      for (let row = 0; row < 10; row++) {
+        if (board[row]?.[col] === null) {
+          fullColumn = false;
+          break;
+        }
+      }
+      if (fullColumn) {
+        console.log(`Column ${col} is completely filled.`);
+        newCol(col);
+      }
+    }
+  }, [newCol]);
 }
 export default Rules;

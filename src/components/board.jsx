@@ -17,6 +17,13 @@ function Board() {
     );
     setBoard(newBoard);
   }
+  // func for clearing a column
+  function newCol(colIndex) {
+    const newBoard = board.map((row) =>
+      row.map((cell, i) => (i === colIndex ? null : cell))
+    );
+    setBoard(newBoard);
+  }
 
   const [hoveredSquares, setHoveredSquares] = useState([]);
   function handleHoverSquares(hoveredSquares) {
@@ -65,7 +72,7 @@ function Board() {
           );
         })}
       </div>
-      <Rules board={board} newRow={newRow} />
+      <Rules board={board} newRow={newRow} newCol={newCol} />
     </div>
   );
 }
