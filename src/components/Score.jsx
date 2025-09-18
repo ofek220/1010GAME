@@ -17,11 +17,11 @@ function Score({ board }) {
 
     const totalPoints = filledRows + filledCols;
     if (totalPoints > 0) {
-      setPoints((prev) => prev + totalPoints * 10);
+      setPoints((prev) => prev + totalPoints * 100);
     }
   }, [board]);
 
-  if (points < 0) {
+  if (points <= 0) {
     return (
       <div id="score">
         <h1>1010GAME</h1>

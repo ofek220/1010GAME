@@ -1,12 +1,23 @@
 :root {
   --square-size: 5vmin;
-  --bgColor: #ae59f8;
+  --bgColor: #887aa1;
 }
 
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #dbdbda;
+  /* background-color: #fff1f1; */
+  background-color: #5c3f7b;
+}
+
+#score {
+  font-family: "Moirai One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pieceStyle {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.244);
 }
 
 #board-div {
@@ -24,15 +35,22 @@ body {
   aspect-ratio: 1 / 1;
   margin: auto;
   gap: 0;
-  border: 2px solid black;
+  border: 3px solid rgba(0, 0, 0, 0);
+  background-color: #3b0270;
+  border-radius: 2%;
+}
+
+#board:hover {
+  box-shadow: 7px 5px 5px rgb(111, 0, 151);
 }
 
 .board-square {
   background-color: var(--bgColor);
-  border: 1px solid black;
+  border: 1px solid #5c3f7b;
   box-sizing: border-box;
   width: var(--square-size);
   height: var(--square-size);
+  border-radius: 15%;
 }
 
 #player-area {
@@ -53,51 +71,48 @@ body {
 }
 
 .square1x1 {
-  background-color: yellow !important;
+  background-color: #fd7bff !important;
 }
 
 .square2x1,
 .square1x2 {
-  background-color: blue !important;
+  background-color: #67e6ff !important;
 }
 
 .square3x1,
 .square1x3 {
-  background-color: green !important;
+  background-color: #2a3cff !important;
 }
 
 .square4x1,
 .square1x4 {
-  background-color: purple !important;
+  background-color: #ff0084 !important;
 }
 
 .square5x1,
 .square1x5 {
-  background-color: rgb(28, 241, 56) !important;
+  background-color: #00ffb3 !important;
 }
 
 .square2x2 {
-  background-color: red !important;
+  background-color: #ff0000 !important;
 }
 
 .L-shape,
 .L-shape-upside-down,
 .L-shape-mirrored {
-  background-color: orange !important;
+  background-color: #ff00d4 !important;
 }
 
 .small-L-shape,
 .small-L-upside-down,
 .small-L-shape-mirrored,
 .small-L-upside-down-mirrored {
-  background-color: rgb(202, 61, 84) !important;
+  background-color: #85faef !important;
 }
 
 .square3x3 {
-  background-color: rgb(255, 0, 119) !important;
-}
-.z-shape {
-  background-color: rgb(0, 255, 213) !important;
+  background-color: #ff0d00 !important;
 }
 
 @media (max-width: 576px) {
