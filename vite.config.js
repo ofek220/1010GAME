@@ -7,20 +7,5 @@ export default defineConfig({
   build: {
     outDir: "dist",
     assetsDir: "assets",
-    rollupOptions: {
-      input: {
-        main: "./index.html",
-      },
-      output: {
-        assetFileNames: (assetInfo) => {
-          const info = assetInfo.name.split(".");
-          const ext = info[info.length - 1];
-          if (/\.(css|scss)$/.test(assetInfo.name)) {
-            return `assets/styles.[ext]`;
-          }
-          return `assets/[name].[ext]`;
-        },
-      },
-    },
   },
 });
