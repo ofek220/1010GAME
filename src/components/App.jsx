@@ -4,6 +4,8 @@ import PlayerArea from "./PlayerArea";
 import { DndProvider } from "react-dnd";
 import { MultiBackend } from "react-dnd-multi-backend";
 import { HTML5toTouch } from "rdndmb-html5-to-touch";
+// import { HTML5Backend } from "react-dnd-html5-backend";
+import CustomDragLayer from "./CustomDragLayer";
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
       <div>
         <Board />
         <PlayerArea />
+        <CustomDragLayer />
       </div>
     </DndProvider>
   );

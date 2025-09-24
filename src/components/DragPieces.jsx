@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { pieces } from "./Pieces";
 import { ItemTypes } from "./Constants";
 import { useDrag } from "react-dnd";
+import { getEmptyImage } from "react-dnd-html5-backend";
 
 function getGridSize(shape) {
   const rows = Math.max(...shape.map(([r]) => r)) + 1;
@@ -20,7 +21,7 @@ function DragPiece({ piece, onPlaced }) {
     grid[r][c] = true;
   });
 
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [{ isDragging }, drag, preview] = useDrag(() => ({
     type: ItemTypes.PIECE,
     item: { piece },
     options: {
@@ -36,6 +37,10 @@ function DragPiece({ piece, onPlaced }) {
       }
     },
   }));
+
+  useEffect(() => {
+    preview(getEmptyImage(), { captureDraggingState: true });
+  }, []);
 
   return (
     <div
