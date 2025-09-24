@@ -30,7 +30,7 @@ function Score({ board }) {
   } else {
     return (
       <div id="score">
-        <h1>{points}</h1>
+        <h1>score: {points}</h1>
       </div>
     );
   }
