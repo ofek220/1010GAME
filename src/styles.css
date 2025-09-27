@@ -94,12 +94,6 @@ body {
 }
 
 .square2x2 {
-  background-color: #ff0000 !important;
-}
-
-.L-shape,
-.L-shape-upside-down,
-.L-shape-mirrored {
   background-color: #ff00d4 !important;
 }
 

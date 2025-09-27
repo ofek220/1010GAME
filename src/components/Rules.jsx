@@ -6,7 +6,7 @@ function Rules({ board, newRow, newCol }) {
     board.forEach((row, rowIndex) => {
       if (!row) return;
       if (row.every((cell) => cell !== null)) {
-        console.log(`Row ${rowIndex} is completely filled.`);
+        // console.log(`Row ${rowIndex} is completely filled.`);
         newRow(rowIndex);
       }
     });
@@ -23,7 +23,7 @@ function Rules({ board, newRow, newCol }) {
         }
       }
       if (fullColumn) {
-        console.log(`Column ${col} is completely filled.`);
+        // console.log(`Column ${col} is completely filled.`);
         newCol(col);
       }
     }
