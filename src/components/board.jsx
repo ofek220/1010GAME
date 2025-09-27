@@ -3,6 +3,7 @@ import DropPiece from "./DropPieces";
 import { pieces } from "./Pieces";
 import Rules from "./Rules";
 import Score from "./Score";
+import { useDragLayer } from "react-dnd";
 
 function Board() {
   const [board, setBoard] = useState(
@@ -42,6 +43,17 @@ function Board() {
     );
     setBoard(newBoard);
   }
+
+  // reset the hovered squares color from red to normal (include useEffect)
+  const { isDragging } = useDragLayer((monitor) => ({
+    isDragging: monitor.isDragging(),
+  }));
+
+  useEffect(() => {
+    if (!isDragging) {
+      setHoveredSquares([]);
+    }
+  }, [isDragging]);
 
   return (
     <>

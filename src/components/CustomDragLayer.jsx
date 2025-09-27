@@ -11,15 +11,13 @@ export default function CustomDragLayer() {
 
   if (!isDragging || !currentOffset || !item) return null;
 
-  const { x, y } = currentOffset;
-
   return (
     <div
       style={{
         position: "fixed",
         pointerEvents: "none",
-        top: y,
-        left: x,
+        top: currentOffset.y,
+        left: currentOffset.x,
         zIndex: 1000,
         opacity: 0.8,
       }}

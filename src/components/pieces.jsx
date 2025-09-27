@@ -91,36 +91,6 @@ export const pieces = [
   }, // square2x2
 
   {
-    className: "pieceStyle L-shape",
-    shape: [
-      [0, 0],
-      [1, 0],
-      [2, 0],
-      [2, 1],
-    ],
-  }, // L-shape
-
-  {
-    className: "pieceStyle L-shape-upside-down",
-    shape: [
-      [0, 0],
-      [0, 1],
-      [1, 0],
-      [2, 0],
-    ],
-  }, // L-shape-upside-down
-
-  {
-    className: "pieceStyle L-shape-mirrored",
-    shape: [
-      [0, 1],
-      [1, 1],
-      [2, 1],
-      [2, 0],
-    ],
-  }, // L-shape-mirrored
-
-  {
     className: "pieceStyle small-L-shape",
     shape: [
       [0, 0],
