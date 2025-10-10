@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function Rules({ board, newRow, newCol }) {
+function Rules({ board, newRow, newCol, randomPieceArray, onGameOver }) {
   useEffect(() => {
     if (!board) return;
     board.forEach((row, rowIndex) => {
@@ -10,9 +10,10 @@ function Rules({ board, newRow, newCol }) {
         newRow(rowIndex);
       }
     });
-  }, [newRow]);
+  }, [board, newRow]);
 
   useEffect(() => {
+    if (!board) return;
     for (let col = 0; col < 10; col++) {
       let fullColumn = true;
 
@@ -27,6 +28,7 @@ function Rules({ board, newRow, newCol }) {
         newCol(col);
       }
     }
-  }, [newCol]);
+  }, [board, newCol]);
 }
+
 export default Rules;

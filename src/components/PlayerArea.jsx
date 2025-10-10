@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { pieces } from "./Pieces";
 import DragPiece from "./DragPieces";
 import { v4 as uuidv4 } from "uuid";
+import PlayerRules from "./PlayerRules";
 
-function PlayerArea() {
+function PlayerArea({ board, onGameOver }) {
   // pick 3 random pieces from pieces.jsx to display in player area
   const [randomPieceArray, setRandomPieceArray] = useState(
     Array.from({ length: 3 }, () => {
@@ -32,6 +33,11 @@ function PlayerArea() {
       {randomPieceArray.map((piece, i) => (
         <DragPiece key={piece.id} piece={piece} onPlaced={onPlaced} />
       ))}
+      <PlayerRules
+        board={board}
+        randomPieceArray={randomPieceArray}
+        onGameOver={onGameOver}
+      />
     </div>
   );
 }

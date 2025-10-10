@@ -4,6 +4,7 @@ import { pieces } from "./Pieces";
 import Rules from "./Rules";
 import Score from "./Score";
 import { useDragLayer } from "react-dnd";
+import PlayerArea from "./PlayerArea";
 
 function Board() {
   const [board, setBoard] = useState(
@@ -55,6 +56,8 @@ function Board() {
     }
   }, [isDragging]);
 
+  const [isGameOver, setIsGameOver] = useState(false);
+
   return (
     <>
       {/* score section */}
@@ -93,6 +96,17 @@ function Board() {
         </div>
         <Rules board={board} newRow={newRow} newCol={newCol} />
       </div>
+      {/* player area section */}
+      <div id="player-area">
+        <PlayerArea board={board} onGameOver={() => setIsGameOver(true)} />
+      </div>
+      {/* game over section */}
+      {isGameOver && (
+        <div className="game-over-overlay">
+          <h1>Game Over</h1>
+          <button onClick={() => window.location.reload()}>Restart</button>
+        </div>
+      )}
     </>
   );
 }
